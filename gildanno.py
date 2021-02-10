@@ -95,6 +95,28 @@ def CenterComment():
                 result[io][gWidth-1] = '!'
                 result[io][gWidth-2] = ' '
                 tail_index=gWidth-3
+    if gLanguage == "c-language":
+        for io in range(len(gText)):
+            result[io][0] = '/'
+            result[io][1] = '/'
+            result[io][2] = ' '
+            head_index=3
+        if gSymmetry:
+            for io in range(len(gText)):
+                result[io][gWidth-1] ='/'
+                result[io][gWidth-2] ='/'
+                result[io][gWidth-3] =' '
+                tail_index=gWidth-4
+    if gLanguage == "python":
+        for io in range(len(gText)):
+            result[io][0] ='#'
+            result[io][1] =' '
+            head_index=2
+        if gSymmetry:
+            for io in range(len(gText)):
+                result[io][gWidth-1]='#'
+                result[io][gWidth-2]=' '
+                tail_index=gWidth-3
     # TODO: exception if gText is too long
 
     # To make the text more readable
@@ -160,6 +182,7 @@ if __name__ == "__main__":
         gOutputFileName = None
 
     if args.width:
+
         gWidth = int(args.width)
     else:
         # Default width
