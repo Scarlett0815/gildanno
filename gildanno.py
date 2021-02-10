@@ -23,39 +23,51 @@ def IsInteger(number):
 
 def ReadFile(filename):
     input_file = open(filename, "r")
-    result = input_file.readline()
+    n=0 # the line number
+    done=0
+    while not done:
+        result.append(input_file.readline())
+        n=n+1
+        if (result[n-1]==""): # the last line is empty
+            done=1 # cease to go on
+            n=n-1 # delete the empty line 
+    i=0
+    for i in range(n):
+        result[i]=result[i][:-1] # delete the '\n' of every line
     input_file.close()
     return result
-
 
 # mode:
 # 0 - single line mode
 # 1 - multiline mode
 def ReadCLI(mode):
-    result = ""
+    result = []
+    j=0 # serve as the line counter
     if mode == 0:
         # Single line mode
-        result = input()
+        result[0] = input()
     else:
         while True:
             line = input()
             if line:
-                result += line + "\n"
+                result.append(line) 
+                # add the new line into the 'result' list
             else:
                 break
-        # Remove the last new line
-        result = result[:-1]
     return result
 
 
 def PrintFile(filename, result):
     output_file = open(filename, "w")
-    output_file.write(result)
+    for k in len(result):
+        output_file.write(result[k])
+        # print the finished strings in order
     output_file.close()
 
 def PrintCLI(result):
-    print(result)
-
+    for k in len(result):
+        print(result[k])
+        # print the finished strings in order
 
 def CenterComment():
     # TODO:
@@ -67,31 +79,39 @@ def CenterComment():
     global gSymmetry
 
     # Convert into list
-    result = list(gSign * gWidth)
-
-    head_index = 0
-    tail_index = gWidth - 1
-
+    result=[]
+    for p in range(len(gText)):
+        result.append(list(gSign*gWidth))
+        # create the result and fill the whole list with the certain sign
+    head_index=0
+    tail_index=gWidth-1
     if gLanguage == "fortran":
-        result[head_index] = '!'
-        result[head_index + 1] = ' '
-        head_index = head_index + 2
+        for io in range(len(gText)):
+            result[io][0] = '!'
+            result[io][1] = ' '
+            head_index=2
         if gSymmetry:
-            result[tail_index] = '!'
-            result[tail_index - 1] = ' '
-            tail_index = tail_index - 2
-
+            for io in range(len(gText)):
+                result[io][gWidth-1] = '!'
+                result[io][gWidth-2] = ' '
+                tail_index=gWidth-3
     # TODO: exception if gText is too long
 
     # To make the text more readable
-    gText = ' ' + gText + ' '
+    for o in range(len(gText)):
+        gText[o] = ' ' + gText[o] + ' '
     
     # Find the start position of the text
-    start_point = ((tail_index - head_index + 1) - len(gText)) // 2 + head_index
-    for id in range(len(gText)):
-        result[start_point + id] = gText[id]
-    # Turn back into string
-    result = ''.join(result)
+    start_point=[]
+    for io in range(len(gText)):
+        start_point.append(((tail_index - head_index + 1)
+        - len(gText[io])) // 2 + head_index)
+    for o in range(len(gText)):
+        for id in range(len(gText[o])):
+            result[o][start_point[o]+id] = gText[o][id]
+    for io in range(len(gText)):
+        result[io]=''.join(result[io])
+    # turn back into strings
     return result
 
 
@@ -115,6 +135,8 @@ if __name__ == "__main__":
         help='Input the adding sign.')
     parser.add_argument('-f', '--symmetry',
         help='Input the symmetry flag.')
+    parser.add_argument('-m','--mode',
+        help='Input the mode you intend to stay.') 
 
     # Parse arguments
     args = parser.parse_args()
@@ -162,15 +184,15 @@ if __name__ == "__main__":
     if gInputFileName is not None:
         gText = ReadFile(gInputFileName)
     else:
-        gText = ReadCLI(0)
+        gText = ReadCLI(args.mode)
 
     # Test input
     print(list(gText))
-
     result = CenterComment()
 
     if gOutputFileName is not None:
         PrintFile(gOutputFileName, result)
     else:
-        print(result)
+        for io in range(len(result)):
+            print(result[io])
 
