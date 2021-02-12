@@ -335,16 +335,6 @@ if __name__ == "__main__":
     else:
         gMode=False
 
-    # TODO
-    ####################
-    # Multiline        #
-    # Up & Down border #
-    ####################
-
-    # TODO
-    # C/C++ mode
-    # Symmetry mode: Multiline comment 0 1 2
-    # /*-- Hi --*/
 
     # Read Text
     if gInputFileName is not None:
