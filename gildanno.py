@@ -44,7 +44,7 @@ def ReadCLI():
     while True:
         line = input()
         if line:
-        # add the new line into the 'result' list
+            # add the new line into the 'result' list
             result.append(line)
         else:
             break
@@ -58,56 +58,57 @@ def PrintFile(filename, result):
         output_file.write(result[k])
     output_file.close()
 
+
 def LeftComment():
     result = []
-    for p in range(len(gText)+2):
+    for p in range(len(gText) + 2):
         result.append(list(gSign * gWidth))
         # create the result and fill the whole list with the certain sign
     head_index = 0
     tail_index = gWidth - 1
     if gLanguage == "fortran":
-        for io in range(len(gText)+2):
+        for io in range(len(gText) + 2):
             result[io][0] = "!"
             result[io][1] = " "
             head_index = 2
         if gSymmetry:
-            for io in range(len(gText)+2):
+            for io in range(len(gText) + 2):
                 result[io][gWidth - 1] = "!"
                 result[io][gWidth - 2] = " "
                 tail_index = gWidth - 3
     if gLanguage == "c":
         if not gMode:
-            for io in range(len(gText)+2):
+            for io in range(len(gText) + 2):
                 result[io][0] = "/"
                 result[io][1] = "/"
                 result[io][2] = " "
                 head_index = 3
             if gSymmetry:
-                for io in range(len(gText)+2):
+                for io in range(len(gText) + 2):
                     result[io][gWidth - 1] = "/"
                     result[io][gWidth - 2] = "/"
                     result[io][gWidth - 3] = " "
                     tail_index = gWidth - 4
         else:
-            for io in range(len(gText)+2):
+            for io in range(len(gText) + 2):
                 result[io][0] = "/"
                 result[io][1] = "*"
                 result[io][2] = " "
                 head_index = 3
             if gSymmetry:
-                for io in range(len(gText)+2):
+                for io in range(len(gText) + 2):
                     result[io][gWidth - 1] = "/"
                     result[io][gWidth - 2] = "*"
                     result[io][gWidth - 3] = " "
                     tail_index = gWidth - 4
 
     if gLanguage == "python":
-        for io in range(len(gText)+2):
+        for io in range(len(gText) + 2):
             result[io][0] = "#"
             result[io][1] = " "
             head_index = 2
         if gSymmetry:
-            for io in range(len(gText)+2):
+            for io in range(len(gText) + 2):
                 result[io][gWidth - 1] = "#"
                 result[io][gWidth - 2] = " "
                 tail_index = gWidth - 3
@@ -118,62 +119,63 @@ def LeftComment():
 
     for o in range(len(gText)):
         for id in range(len(gText[o])):
-            result[o+1][head_index+id] = gText[o][id]
-    for io in range(len(gText)+2):
+            result[o + 1][head_index + id] = gText[o][id]
+    for io in range(len(gText) + 2):
         result[io] = "".join(result[io])
     # turn back into strings
     return result
 
+
 def RightComment():
     result = []
-    for p in range(len(gText)+2):
+    for p in range(len(gText) + 2):
         result.append(list(gSign * gWidth))
         # create the result and fill the whole list with the certain sign
     head_index = 0
     tail_index = gWidth - 1
     if gLanguage == "fortran":
-        for io in range(len(gText)+2):
+        for io in range(len(gText) + 2):
             result[io][0] = "!"
             result[io][1] = " "
             head_index = 2
         if gSymmetry:
-            for io in range(len(gText)+2):
+            for io in range(len(gText) + 2):
                 result[io][gWidth - 1] = "!"
                 result[io][gWidth - 2] = " "
                 tail_index = gWidth - 3
     if gLanguage == "c":
         if not gMode:
-            for io in range(len(gText)+2):
+            for io in range(len(gText) + 2):
                 result[io][0] = "/"
                 result[io][1] = "/"
                 result[io][2] = " "
                 head_index = 3
             if gSymmetry:
-                for io in range(len(gText)+2):
+                for io in range(len(gText) + 2):
                     result[io][gWidth - 1] = "/"
                     result[io][gWidth - 2] = "/"
                     result[io][gWidth - 3] = " "
                     tail_index = gWidth - 4
         else:
-            for io in range(len(gText)+2):
+            for io in range(len(gText) + 2):
                 result[io][0] = "/"
                 result[io][1] = "*"
                 result[io][2] = " "
                 head_index = 3
             if gSymmetry:
-                for io in range(len(gText)+2):
+                for io in range(len(gText) + 2):
                     result[io][gWidth - 1] = "/"
                     result[io][gWidth - 2] = "*"
                     result[io][gWidth - 3] = " "
                     tail_index = gWidth - 4
 
     if gLanguage == "python":
-        for io in range(len(gText)+2):
+        for io in range(len(gText) + 2):
             result[io][0] = "#"
             result[io][1] = " "
             head_index = 2
         if gSymmetry:
-            for io in range(len(gText)+2):
+            for io in range(len(gText) + 2):
                 result[io][gWidth - 1] = "#"
                 result[io][gWidth - 2] = " "
                 tail_index = gWidth - 3
@@ -184,8 +186,8 @@ def RightComment():
 
     for o in range(len(gText)):
         for id in range(len(gText[o])):
-            result[o+1][tail_index-id] = gText[o][id]
-    for io in range(len(gText)+2):
+            result[o + 1][tail_index - id] = gText[o][id]
+    for io in range(len(gText) + 2):
         result[io] = "".join(result[io])
     # turn back into strings
     return result
@@ -201,59 +203,57 @@ def CenterComment():
     global gSymmetry
     global gMode
     result = []
-    for p in range(len(gText)+2):
+    for p in range(len(gText) + 2):
         result.append(list(gSign * gWidth))
         # create the result and fill the whole list with the certain sign
     head_index = 0
     tail_index = gWidth - 1
     if gLanguage == "fortran":
-        for io in range(len(gText)+2):
+        for io in range(len(gText) + 2):
             result[io][0] = "!"
             result[io][1] = " "
             head_index = 2
         if gSymmetry:
-            for io in range(len(gText)+2):
+            for io in range(len(gText) + 2):
                 result[io][gWidth - 1] = "!"
                 result[io][gWidth - 2] = " "
                 tail_index = gWidth - 3
     if gLanguage == "c":
         if not gMode:
-            for io in range(len(gText)+2):
+            for io in range(len(gText) + 2):
                 result[io][0] = "/"
                 result[io][1] = "/"
                 result[io][2] = " "
                 head_index = 3
             if gSymmetry:
-                for io in range(len(gText)+2):
+                for io in range(len(gText) + 2):
                     result[io][gWidth - 1] = "/"
                     result[io][gWidth - 2] = "/"
                     result[io][gWidth - 3] = " "
                     tail_index = gWidth - 4
         else:
-            for io in range(len(gText)+2):
+            for io in range(len(gText) + 2):
                 result[io][0] = "/"
                 result[io][1] = "*"
                 result[io][2] = " "
                 head_index = 3
             if gSymmetry:
-                for io in range(len(gText)+2):
+                for io in range(len(gText) + 2):
                     result[io][gWidth - 1] = "/"
                     result[io][gWidth - 2] = "*"
                     result[io][gWidth - 3] = " "
                     tail_index = gWidth - 4
 
     if gLanguage == "python":
-        for io in range(len(gText)+2):
+        for io in range(len(gText) + 2):
             result[io][0] = "#"
             result[io][1] = " "
             head_index = 2
         if gSymmetry:
-            for io in range(len(gText)+2):
+            for io in range(len(gText) + 2):
                 result[io][gWidth - 1] = "#"
                 result[io][gWidth - 2] = " "
                 tail_index = gWidth - 3
-
-    # TODO: exception if gText is too long
 
     # To make the text more readable
     for o in range(len(gText)):
@@ -267,8 +267,8 @@ def CenterComment():
         )
     for o in range(len(gText)):
         for id in range(len(gText[o])):
-            result[o+1][start_point[o] + id] = gText[o][id]
-    for io in range(len(gText)+2):
+            result[o + 1][start_point[o] + id] = gText[o][id]
+    for io in range(len(gText) + 2):
         result[io] = "".join(result[io])
     # turn back into strings
     return result
@@ -286,8 +286,16 @@ if __name__ == "__main__":
     parser.add_argument("-w", "--width", help="Input the whole length.")
     parser.add_argument("-s", "--sign", help="Input the adding sign.")
     parser.add_argument("-f", "--symmetry", help="Input the symmetry flag.")
-    parser.add_argument("-m", "--mode", help="When you choose c/c++ ,you need to select between //(0) and /*(1).")
-    parser.add_argument("-e", "--selection",help="Select centrecomment(c) leftcomment(l) or rightcomment(r).")
+    parser.add_argument(
+        "-m",
+        "--mode",
+        help="When you choose c/c++ ,you need to select between //(0) and /*(1).",
+    )
+    parser.add_argument(
+        "-e",
+        "--selection",
+        help="Select centrecomment(c) leftcomment(l) or rightcomment(r).",
+    )
     # Parse arguments
     args = parser.parse_args()
 
@@ -327,14 +335,13 @@ if __name__ == "__main__":
         gSign = " "
 
     if args.symmetry:
-        gSymmetry =args.symmetry
+        gSymmetry = args.symmetry
     else:
-        gSymmetry =False
+        gSymmetry = False
     if args.mode:
-        gMode=args.mode
+        gMode = args.mode
     else:
-        gMode=False
-
+        gMode = False
 
     # Read Text
     if gInputFileName is not None:
@@ -342,14 +349,14 @@ if __name__ == "__main__":
     else:
         gText = ReadCLI()
     if args.selection:
-        if args.selection=='c':
-            result=CenterComment()
-        if args.selection=='l':
-            result=LeftComment()
-        if args.selection=='r':
-            result=RightComment()
+        if args.selection == "c":
+            result = CenterComment()
+        if args.selection == "l":
+            result = LeftComment()
+        if args.selection == "r":
+            result = RightComment()
     else:
-        result=CenterComment()
+        result = CenterComment()
     if gOutputFileName is not None:
         PrintFile(gOutputFileName, result)
     else:
