@@ -255,6 +255,8 @@ def CenterComment():
                 result[io][gWidth - 2] = " "
                 tail_index = gWidth - 3
 
+    # TODO: exception if gText is too long
+
     # To make the text more readable
     for o in range(len(gText)):
         gText[o] = " " + gText[o] + " "
@@ -335,13 +337,24 @@ if __name__ == "__main__":
         gSign = " "
 
     if args.symmetry:
-        gSymmetry = args.symmetry
+        gSymmetry = int(args.symmetry)
     else:
         gSymmetry = False
     if args.mode:
-        gMode = args.mode
+        gMode = int(args.mode)
     else:
         gMode = False
+
+    # TODO
+    ####################
+    # Multiline        #
+    # Up & Down border #
+    ####################
+
+    # TODO
+    # C/C++ mode
+    # Symmetry mode: Multiline comment 0 1 2
+    # /*-- Hi --*/
 
     # Read Text
     if gInputFileName is not None:
