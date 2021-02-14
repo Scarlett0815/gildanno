@@ -121,7 +121,9 @@ Specify if you want to choose the adjustment of the location of the text. SELECT
 #### input:
 
 python gildanno.py -l c -w 30 -s + -f 1 -m 1 -e l
+
 hello
+
 world
 
 #### output:
@@ -141,7 +143,9 @@ world
 #### input：
 
 python gildanno.py -l c -w 30 -s + -f 1 -m 0 -e c
+
 hello
+
 world
 
 #### output:
