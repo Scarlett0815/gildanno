@@ -6,10 +6,10 @@ Gildanno is a comment generator. If you need make your comments centered, fill t
 
 ## Table Of Contents
 
-* [Quick start options](##quick-start-options)
-* [Why Gildanno](##why-gildanno)
-* [Short User Manual](##short-user-manual)
-* [Examples](##examples)
+* [Quick start options](#quick-start-options)
+* [Why Gildanno](#why-gildanno)
+* [Short User Manual](#short-user-manual)
+* [Examples](#examples)
 
 ## Quick Start Options
 
