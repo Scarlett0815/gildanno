@@ -55,7 +55,10 @@ optional arguments:
   -s SIGN, --sign SIGN  Input the adding sign.
   -f SYMMETRY, --symmetry SYMMETRY
                         Input the symmetry flag.
-  -m MODE, --mode MODE  Input the mode you intend to stay.
+  -m MODE, --mode MODE  
+                        When you choose c/c++ ,you need to select between //(0)                         and /*(1).
+  -e SELECTION, --selection SELECTION
+                        Select centrecomment(c) leftcomment(l) or                                       rightcomment(r).
 ```
 
 ### Language
@@ -99,7 +102,52 @@ Specify if you want to create a symmetry style. A symmetry mode is add the comme
 
 -m **MODE** or --mode **MODE**
 
-Specify the mode of your comment. MODE = 0 represents the single line mode, and MODE
- = 1 represents the multiline mode.
+Specify if you choose the language c/c++.You are supposed to select between the mode like '//'
+
+(0)and the mode like '/*'(1). And if you don't input '-m', the mode is set to an extension of '//'.
+
+### SELECTION
+
+-e **SELECTION** or -- selection **SELECTION**
+
+Specify if you want to choose the adjustment of the location of the text. SELECTION = 'c' represents the center adjustment, SELECTION ='l' represents the left adjustment, and SELECTION ='r' represents the right adjustment.
+
+
 
 ## Examples
+
+### 1.
+
+#### input:
+
+python gildanno.py -l c -w 30 -s + -f 1 -m 1 -e l
+hello
+world
+
+#### output:
+
+/* ++++++++++++++++++++++++ */
+
+/* hello +++++++++++++++++*/
+
+/*  world +++++++++++++++++ */
+
+/* ++++++++++++++++++++++++ */
+
+
+
+### 2.
+
+#### input：
+
+python gildanno.py -l c -w 30 -s + -f 1 -m 0 -e c
+hello
+world
+
+#### output:
+
+// ++++++++++++++++++++++++ //
+// ++++++++ hello +++++++++ //
+// ++++++++ world +++++++++ //
+// ++++++++++++++++++++++++ //
+
