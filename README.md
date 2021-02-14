@@ -56,9 +56,9 @@ optional arguments:
   -f SYMMETRY, --symmetry SYMMETRY
                         Input the symmetry flag.
   -m MODE, --mode MODE  
-                        When you choose c/c++ ,you need to select between //(0)                         and /*(1).
+                        When you choose c/c++ ,you need to select between//(0)and /*(1).
   -e SELECTION, --selection SELECTION
-                        Select centrecomment(c) leftcomment(l) or                                       rightcomment(r).
+                        Select centrecomment(c) leftcomment(l) or rightcomment(r).
 ```
 
 ### Language
@@ -147,7 +147,9 @@ world
 #### output:
 
 // ++++++++++++++++++++++++ //
-// ++++++++ hello +++++++++ //
-// ++++++++ world +++++++++ //
-// ++++++++++++++++++++++++ //
 
+// ++++++++ hello +++++++++ //
+
+// ++++++++ world +++++++++ //
+
+// ++++++++++++++++++++++++ // 
