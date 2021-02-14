@@ -6,10 +6,10 @@ Gildanno is a comment generator. If you need make your comments centered, fill t
 
 ## Table Of Contents
 
-* [Quick start options](##Quick-Start-Options)
-* [Why Gildanno](##Why-Gildanno)
-* [Short User Manual](##Short-User-Manual)
-* [Examples](##Examples)
+* [Quick start options](##quick-start-options)
+* [Why Gildanno](##why-gildanno)
+* [Short User Manual](##short-user-manual)
+* [Examples](##examples)
 
 ## Quick Start Options
 
@@ -116,44 +116,41 @@ Specify if you want to choose the adjustment of the location of the text. SELECT
 
 ## Examples
 
-### 1.
+### 1. C comment
 
-#### input:
+#### Example 1 input
 
-python gildanno.py -l c -w 30 -s + -f 1 -m 1 -e l
-
+```bash
+> python gildanno.py -l c -w 30 -s + -f 1 -m 1 -e l
 hello
-
 world
+```
 
-#### output:
+#### Example 1 output
 
+```bash
 /* ++++++++++++++++++++++++ */
-
-/* hello +++++++++++++++++*/
-
+/*  hello +++++++++++++++++ */
 /*  world +++++++++++++++++ */
-
 /* ++++++++++++++++++++++++ */
+```
 
 
+### 2. C comment
 
-### 2.
+#### Example 2 input
 
-#### input：
-
-python gildanno.py -l c -w 30 -s + -f 1 -m 0 -e c
-
+```bash
+> python gildanno.py -l c -w 30 -s + -f 1 -m 0 -e c
 hello
-
 world
+```
 
-#### output:
+#### Example 2 output
 
+```bash
 // ++++++++++++++++++++++++ //
-
 // ++++++++ hello +++++++++ //
-
 // ++++++++ world +++++++++ //
-
-// ++++++++++++++++++++++++ // 
+// ++++++++++++++++++++++++ //
+```
